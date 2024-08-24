@@ -1,12 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace DataStructuresLib.LinkedList.SingleLinkedList
 {
-    public class SingleLinkedList<T>//Liste başına ekleme yapılır
+    public class SingleLinkedList<T>: IEnumerable<T> //Liste başına ekleme yapılır
     {
+        public SingleLinkedList() { }
+        public SingleLinkedList(IEnumerable<T> collection) {
+            
+            foreach(var item in collection)
+                this.AddFirst(item);
+        }
 
         public SingleLinkedListNode<T> Head { get; set; }
         private bool isHeadNull => Head == null;//? true:false; bu kısmı istersek ekleyebiliriz ama ternaty ifade de buna gerek yok 
@@ -71,5 +78,13 @@ namespace DataStructuresLib.LinkedList.SingleLinkedList
 
         public void AddBefore(SingleLinkedListNode<T> refNode,
             SingleLinkedListNode<T> newNode) => throw new NotImplementedException(); //HomeWork
+
+        public IEnumerator<T> GetEnumerator() {
+            return new SingleLinkedListEnumerator<T>(Head);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return GetEnumerator();
+        }
     }
 }
