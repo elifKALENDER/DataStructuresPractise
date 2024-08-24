@@ -5,13 +5,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LinkedListApp {
     class Program {
 
         static void Main(string[] args) {
-            
+
+            var rnd = new Random();
+            var initial=Enumerable.Range(1, 10).OrderBy(x=> rnd.Next()).ToList();
+            var linkedlist =new SingleLinkedList<int>(initial);
+
+          
+
+            var q = from item in linkedlist // from LINQ içim bir sorgu yazılacağı anlamına gelir
+                    where item % 2 == 1 //tek sayıları ver
+                    select item;
+
+            foreach (var item in q)
+            {
+                Console.WriteLine(item);
+            }
+
+            linkedlist.Where(x => x > 5)
+                .ToList()
+                .ForEach(x => Console.Write(x + " "));
+
+
+
             Console.ReadKey();
         }
         private static void SingleLinkedListApp001() {

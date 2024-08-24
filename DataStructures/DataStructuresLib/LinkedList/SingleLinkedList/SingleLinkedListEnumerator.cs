@@ -4,8 +4,8 @@ using System.Collections.Generic;
 namespace DataStructuresLib.LinkedList.SingleLinkedList {
     internal class SingleLinkedListEnumerator<T> : IEnumerator<T> {
 
-        private SingleLinkedListNode<T> Head;
-        private SingleLinkedListNode<T> _current;
+        private SingleLinkedListNode<T>? Head;
+        private SingleLinkedListNode<T>? _current;
 
         public SingleLinkedListEnumerator(SingleLinkedListNode<T> head) {
             Head = head;
@@ -21,7 +21,7 @@ namespace DataStructuresLib.LinkedList.SingleLinkedList {
         }
 
         public bool MoveNext() {
-            if(true)
+            if(_current==null)
             {
                 _current = Head;
                 return true;

@@ -16,7 +16,7 @@ namespace DataStructuresLib.LinkedList.SingleLinkedList
         }
 
         public SingleLinkedListNode<T> Head { get; set; }
-        private bool isHeadNull => Head == null;//? true:false; bu kısmı istersek ekleyebiliriz ama ternaty ifade de buna gerek yok 
+        private bool isHeadNull => Head == null ? true:false;// bu kısmı istersek ekleyebiliriz ama ternaty ifade de buna gerek yok 
         public void AddFirst(T value)
         {
 
@@ -33,6 +33,7 @@ namespace DataStructuresLib.LinkedList.SingleLinkedList
             if (isHeadNull)
             {
                 Head = newNode;
+                return;
             }
             var current=Head;
             while(current.Next !=null)
