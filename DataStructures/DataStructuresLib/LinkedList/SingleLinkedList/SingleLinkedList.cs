@@ -87,5 +87,78 @@ namespace DataStructuresLib.LinkedList.SingleLinkedList
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
+
+        public T RemoveFirst() {
+
+            if (isHeadNull)
+                throw new Exception("Underflow! Nothing to remove.");
+            var firstValue = Head.Value;
+            Head = Head.Next;
+            return firstValue;
+        }
+
+        public T RemoveLast() {
+
+            var current = Head;
+            SingleLinkedListNode<T> prev = null;
+            while(current.Next!= null)
+            {
+                prev = current;
+                current = current.Next;
+            }
+            var lastValue = prev.Next.Value;
+            prev.Next = null;
+            return lastValue;
+        }
+
+        public void Remove(T value) {
+            if (isHeadNull)
+                throw new Exception("Underflow! Nothing to remove.");
+
+            if (value == null)
+                throw new ArgumentNullException();
+
+            var current = Head;
+            SingleLinkedListNode<T> prev = null;
+            do
+            {
+                if (current.Value.Equals(value))
+                {
+                    //son eleman mı?
+                    if (current.Next == null)
+                    {
+                        if(prev== null)
+                        {
+                            Head = null;
+                            return;
+                        }
+                        //son eleman
+                        else
+                        {
+                            prev.Next = null;
+                            return ;
+                        }
+                    }
+                    else
+                    {
+                        //head
+                        if (prev == null)
+                        {
+                            Head=Head.Next;
+                            return;
+                        }
+                        //ara düğüm
+                        else
+                        {
+                            prev.Next = current.Next;
+                            return;
+                        }
+                    }
+                }
+                prev = current;
+                current=current.Next;
+            } while (current != null);
+            throw new ArgumentException("The value could not be found in the list.");
+        }
     }
 }

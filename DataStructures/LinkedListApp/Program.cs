@@ -10,31 +10,19 @@ namespace LinkedListApp {
     class Program {
 
         static void Main(string[] args) {
-
-            var rnd = new Random();
-            var initial=Enumerable.Range(1, 10).OrderBy(x=> rnd.Next()).ToList();
-            var linkedlist =new SingleLinkedList<int>(initial);
-
-          
-
-            var q = from item in linkedlist // from LINQ içim bir sorgu yazılacağı anlamına gelir
-                    where item % 2 == 1 //tek sayıları ver
-                    select item;
-
-            foreach (var item in q)
+            var list = new SingleLinkedList<int>(new int[] { 15, 24, 33, 45, });
+            list.Remove(24);
+            list.Remove(45);
+            list.Remove(33);
+            foreach (var item in list)
             {
                 Console.WriteLine(item);
             }
 
-            linkedlist.Where(x => x > 5)
-                .ToList()
-                .ForEach(x => Console.Write(x + " "));
-
-
 
             Console.ReadKey();
         }
-        private static void SingleLinkedListApp001() {
+        private static void SingleLinkedListApp01() {
 
             var linkedlist = new SingleLinkedList<int>();
             linkedlist.AddFirst(1);
@@ -69,7 +57,7 @@ namespace LinkedListApp {
 
             Console.ReadKey();
         }
-        private static void SingleLinkedListApp002() {
+        private static void SingleLinkedListApp02() {
             var arr = new char[] { 'a', 'b', 'c' };
             var arrList = new ArrayList(arr);
             var list = new List<char>(arr);
@@ -79,6 +67,47 @@ namespace LinkedListApp {
             foreach (var item in arrList)
             {
                 Console.WriteLine(item);
+            }
+        }
+        private static void SingleLinkedListApp03() {
+
+            var rnd = new Random();
+            var initial = Enumerable.Range(1, 10).OrderBy(x => rnd.Next()).ToList();
+            var linkedlist = new SingleLinkedList<int>(initial);
+
+
+
+            var q = from item in linkedlist // from LINQ içim bir sorgu yazılacağı anlamına gelir
+                    where item % 2 == 1 //tek sayıları ver
+                    select item;
+
+            foreach (var item in q)
+            {
+                Console.WriteLine(item);
+            }
+
+            linkedlist.Where(x => x > 5)
+                .ToList()
+                .ForEach(x => Console.Write(x + " "));
+        }
+        private static void SingleLinkedListApp04() {
+
+            var rnd = new Random();
+            var initial = Enumerable.Range(1, 5).OrderBy(x => rnd.Next()).ToList();
+            var list = new SingleLinkedList<int>(initial);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+            list.RemoveFirst();
+            list.RemoveFirst();
+
+            Console.WriteLine($"{list.RemoveLast()} has been removed");
+
+            Console.WriteLine();
+            foreach (var item in list)
+            {
+                Console.Write(item + " ");
             }
         }
     }
