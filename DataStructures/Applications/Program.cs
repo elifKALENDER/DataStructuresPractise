@@ -83,9 +83,11 @@ namespace Applications {
             
             var arr = new DataStructuresLib.Array.Array<int>(1,3,5,7);
             var crr = arr.Clone() as DataStructuresLib.Array.Array<int>;//(DataStructuresLib.Array.Array<int>)arr.Clone();// klonladığımızda arr ile aynı özelliklere sahip olamaz enumerate edilemez mesela
-
+            var brr = new DataStructuresLib.Array.Array<int>(2,4,6);
             arr.Add(99);
             crr.Add(88);
+            arr.AddRange(brr);
+            
             foreach(int item in arr)
             {
                 Console.Write($"{item,-3}");

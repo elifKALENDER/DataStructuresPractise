@@ -44,8 +44,13 @@ namespace DataStructuresLib.Array
             Count++;
         }
         public void AddRange(IEnumerable<T> collection) //birden fazla elemanı koleksiyona eklemeye yarar
-       {
-            throw new NotImplementedException();
+        {
+            // var tempList = new T[collection.ToArray().Length] ;
+            foreach (var item in collection)
+            {
+                //if(item != T)
+                Add(item);
+            }               
         }
         
 
@@ -71,7 +76,7 @@ namespace DataStructuresLib.Array
             return temp;
         }
         public bool Remove(T item) {
-            throw new NotImplementedException();
+            throw new Exception();
         }
 
         private void HalfArray() {
