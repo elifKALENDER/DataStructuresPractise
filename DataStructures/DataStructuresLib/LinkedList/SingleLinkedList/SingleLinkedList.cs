@@ -9,7 +9,7 @@ namespace DataStructuresLib.LinkedList.SingleLinkedList
     {
 
         public SingleLinkedListNode<T> Head { get; set; }
-
+        private bool isHeadNull => Head == null;//? true:false; bu kısmı istersek ekleyebiliriz ama ternaty ifade de buna gerek yok 
         public void AddFirst(T value)
         {
 
@@ -23,7 +23,7 @@ namespace DataStructuresLib.LinkedList.SingleLinkedList
 
             var newNode = new SingleLinkedListNode<T>(value);
 
-            if (Head != null)
+            if (isHeadNull)
             {
                 Head = newNode;
             }
@@ -34,5 +34,42 @@ namespace DataStructuresLib.LinkedList.SingleLinkedList
             }
             current.Next = newNode;
         }
+        public void AddAfter(SingleLinkedListNode<T> node,T value) {
+
+            if(node == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (isHeadNull)
+            {
+                AddFirst(value);
+                return;
+            }
+            var newNode= new SingleLinkedListNode<T>(value);
+            var current = Head;
+            while(current !=null)
+            {
+                if (current.Equals(node))
+                {
+                    newNode.Next = current.Next;
+                    current.Next = newNode;
+                    return;
+                }
+                current = current.Next;
+            }
+            throw new ArgumentNullException("The reference node  is not in this list.");
+        }
+
+        public void AddAfter(SingleLinkedListNode<T> refNode, //HomeWork
+            SingleLinkedListNode<T> newNode) {
+
+            throw new NotImplementedException();
+        }
+
+        public void AfterBefore(SingleLinkedListNode<T> node, T value)  //HomeWork
+            => throw new NotImplementedException();
+
+        public void AddBefore(SingleLinkedListNode<T> refNode,
+            SingleLinkedListNode<T> newNode) => throw new NotImplementedException(); //HomeWork
     }
 }

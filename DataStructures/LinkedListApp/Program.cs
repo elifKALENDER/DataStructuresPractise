@@ -15,6 +15,16 @@ namespace LinkedListApp {
             linkedlist.AddFirst(1);
             linkedlist.AddFirst(2);
             linkedlist.AddFirst(3);
+            // 3 2 1 o(1)
+
+            linkedlist.AddLast(4);
+            linkedlist.AddLast(5);
+            //3 2 1 4 5 O(n)
+            
+            linkedlist.AddAfter(linkedlist.Head.Next,32);
+            linkedlist.AddAfter(linkedlist.Head.Next.Next,33);
+            //3 2 32 33 1 4 5 O(n)
+
             Console.ReadKey();
         }
     }

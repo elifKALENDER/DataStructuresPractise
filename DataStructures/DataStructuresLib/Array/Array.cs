@@ -75,7 +75,7 @@ namespace DataStructuresLib.Array
                 Count--;
             return temp;
         }
-        public bool Remove(T item) {
+        public bool Remove(T item) { //HomeWork
             throw new Exception();
         }
 
