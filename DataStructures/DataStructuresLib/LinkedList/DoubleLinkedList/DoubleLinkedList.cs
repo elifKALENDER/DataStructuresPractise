@@ -1,14 +1,27 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace DataStructuresLib.LinkedList.DoubleLinkedList {
-    public class DoubleLinkedList<T> {
+    public class DoubleLinkedList<T> :IEnumerable{
 
         public DoubleLinkedListNode <T> Head { get; set; }
         public DoubleLinkedListNode <T> Tail { get; set; }
+        private bool isHeadNull => Head == null;
 
+        public DoubleLinkedList() 
+        {
+
+        }
+        public DoubleLinkedList(IEnumerable<T> collection) {
+
+            foreach (var item in collection)
+            {
+                AddLast(item);
+            }
+        }
         public void AddFirst(T value) {
              var newNode = new DoubleLinkedListNode<T>(value);
              if (Head != null)
@@ -19,14 +32,15 @@ namespace DataStructuresLib.LinkedList.DoubleLinkedList {
             newNode.Prev = null;
             Head = newNode;
 
-            if(Tail != null)
+            if(Tail == null)
             {
-                Head.Prev = Head;
+                Tail = Head;
             }
+
         }
 
         public void AddLast(T value) {
-            if (Tail != null)
+            if (Tail == null)
             {
                 AddFirst(value);
                 return;
@@ -45,6 +59,7 @@ namespace DataStructuresLib.LinkedList.DoubleLinkedList {
 
             if (refNode == null)
                 throw new ArgumentNullException();
+
             if(refNode==Head && refNode == Tail)// Tek bir düğüm varsa bu kısım yeterli 
             {
                 refNode.Next = newNode;
@@ -58,7 +73,7 @@ namespace DataStructuresLib.LinkedList.DoubleLinkedList {
                 return;
             }
 
-            if(refNode == Tail) // İki düğüm varsa bu kısmda olmalı
+            if(refNode != Tail) // İki düğüm varsa bu kısmda olmalı
             {
                 newNode.Prev=refNode;
                 newNode.Next=refNode.Next;
@@ -82,7 +97,41 @@ namespace DataStructuresLib.LinkedList.DoubleLinkedList {
             
             throw new NotImplementedException();
         }
+        private List<DoubleLinkedListNode<T>> GetAllNodes() {
 
+            var list = new List<DoubleLinkedListNode<T>>();
+            var current = Head;
+            while(current != null)
+            {
+                list.Add(current);
+                current = current.Next;
 
+            }
+            return list;
+        }
+
+        public IEnumerator GetEnumerator() {
+            return GetAllNodes().GetEnumerator();
+        }
+
+        public T RemoveFirst () {
+
+            if (isHeadNull)
+                throw new Exception("");
+
+            var temp = Head.Value;
+            if (Head == Tail)
+            {
+                Head = null;
+                Tail = null;
+            }
+            else
+            {
+                Head = Head.Next;
+                Head.Prev = null;
+            }
+
+            return temp;
+        }
     }
 }

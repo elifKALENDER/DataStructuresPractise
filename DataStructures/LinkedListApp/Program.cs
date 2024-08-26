@@ -12,22 +12,18 @@ namespace LinkedListApp {
 
         static void Main(string[] args) {
 
-            var list = new DoubleLinkedList<int>();
-            list.AddFirst(12);
-            list.AddFirst(23);
-            // 23 12 
+            //var list = new DoubleLinkedList<char>(new List<char>() { 'a','b','c'});
+            var list =new DoubleLinkedList<char>(new char[] {'x','y','z'});
 
-            list.AddLast(44);
-            list.AddLast(55);
-            //23 12 44 45
+            Console.WriteLine($"{list.RemoveFirst()} has been removed from list.");
 
-            list.AddAfter(list.Head.Next,
-                new DoubleLinkedListNode<int>(13));
-            //23 12 13 44 55
-
-
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
             Console.ReadKey();
-        }
+        }        
+
         private static void SingleLinkedListApp01() {
 
             var linkedlist = new SingleLinkedList<int>();
@@ -62,7 +58,7 @@ namespace LinkedListApp {
             //}
 
             Console.ReadKey();
-        }
+        } // daha önce yazdığın kodu kenara almak sitersen control . yaz ve oradan extract method'u seç  seçtiğin kodlar özel bir private yapının içine girecek ve rahatlıkla adalndırma yapabilirsin
         private static void SingleLinkedListApp02() {
             var arr = new char[] { 'a', 'b', 'c' };
             var arrList = new ArrayList(arr);
@@ -121,6 +117,26 @@ namespace LinkedListApp {
             list.Remove(24);
             list.Remove(45);
             list.Remove(33);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        private static void DoubleLinkedListApp01() {
+            var list = new DoubleLinkedList<int>();
+            list.AddFirst(12);
+            list.AddFirst(23);
+            // 23 12 
+
+            list.AddLast(44);
+            list.AddLast(55);
+            //23 12 44 45
+
+            list.AddAfter(list.Head.Next,
+                new DoubleLinkedListNode<int>(13));
+            //23 12 13 44 55
+
             foreach (var item in list)
             {
                 Console.WriteLine(item);
