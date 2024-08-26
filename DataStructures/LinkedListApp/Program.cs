@@ -1,4 +1,5 @@
 ﻿using DataStructuresLib.LinkedList;
+using DataStructuresLib.LinkedList.DoubleLinkedList;
 using DataStructuresLib.LinkedList.SingleLinkedList;
 using System;
 using System.Collections;
@@ -10,14 +11,19 @@ namespace LinkedListApp {
     class Program {
 
         static void Main(string[] args) {
-            var list = new SingleLinkedList<int>(new int[] { 15, 24, 33, 45, });
-            list.Remove(24);
-            list.Remove(45);
-            list.Remove(33);
-            foreach (var item in list)
-            {
-                Console.WriteLine(item);
-            }
+
+            var list = new DoubleLinkedList<int>();
+            list.AddFirst(12);
+            list.AddFirst(23);
+            // 23 12 
+
+            list.AddLast(44);
+            list.AddLast(55);
+            //23 12 44 45
+
+            list.AddAfter(list.Head.Next,
+                new DoubleLinkedListNode<int>(13));
+            //23 12 13 44 55
 
 
             Console.ReadKey();
@@ -108,6 +114,16 @@ namespace LinkedListApp {
             foreach (var item in list)
             {
                 Console.Write(item + " ");
+            }
+        }
+        private static void SingleLinkedListApp05() {
+            var list = new SingleLinkedList<int>(new int[] { 15, 24, 33, 45, });
+            list.Remove(24);
+            list.Remove(45);
+            list.Remove(33);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
             }
         }
     }
