@@ -12,17 +12,27 @@ namespace LinkedListApp {
 
         static void Main(string[] args) {
 
-            //var list = new DoubleLinkedList<char>(new List<char>() { 'a','b','c'});
-            var list =new DoubleLinkedList<char>(new char[] {'x','y','z'});
-
-            Console.WriteLine($"{list.RemoveFirst()} has been removed from list.");
-
+            var list = new DoubleLinkedList<int>(new int[] {23,44,55,61});
+            list.Delete(55);
             foreach (var item in list)
             {
                 Console.WriteLine(item);
             }
             Console.ReadKey();
-        }        
+        }
+
+        private static void DoubleLinkListApp02() {
+            //var list = new DoubleLinkedList<char>(new List<char>() { 'a','b','c'});
+            var list = new DoubleLinkedList<char>(new char[] { 'x', 'y', 'z', 'a', 'b', 'c' });
+
+            Console.WriteLine($"{list.RemoveFirst()} has been removed from list.");
+            Console.WriteLine($"{list.RemoveLast()} has been removed from list.");
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
 
         private static void SingleLinkedListApp01() {
 

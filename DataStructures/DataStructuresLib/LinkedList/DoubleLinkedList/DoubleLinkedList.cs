@@ -10,6 +10,7 @@ namespace DataStructuresLib.LinkedList.DoubleLinkedList {
         public DoubleLinkedListNode <T> Head { get; set; }
         public DoubleLinkedListNode <T> Tail { get; set; }
         private bool isHeadNull => Head == null;
+        private bool isTailNull => Head == null;
 
         public DoubleLinkedList() 
         {
@@ -132,6 +133,66 @@ namespace DataStructuresLib.LinkedList.DoubleLinkedList {
             }
 
             return temp;
+        }
+
+        public T RemoveLast() {
+            if (isTailNull)
+                throw new Exception("Empty List.");
+            var temp = Tail.Value;
+
+            if (Tail == Head)
+            {
+                Head = null;
+                Tail = null;
+            }
+            else
+            {
+                Tail.Prev.Next = null;
+                Tail=Tail.Prev;
+            }
+            return temp;
+        }
+
+        public void Delete(T value) {
+            if (isHeadNull)
+                throw new Exception("");
+
+            //Tek eleman
+            if (Head == Tail)
+            {
+                if (Head.Value.Equals(value))
+                {
+                    RemoveFirst();
+                }
+                return;
+            }
+
+            //en az iki eleman.
+            var current = Head;
+
+            while(current != null)
+            {
+                //current -> ilk eleman
+                if(current.Prev == null)
+                {
+                    current.Next.Prev = null;
+                    Head = current.Next;
+                }
+                //current -> son eleman
+                else if (current.Next == null)
+                {
+                    current.Prev.Next = null;
+                    Tail=current.Prev;
+                }
+                //current -> arada bir pozisyonda
+                else
+                {
+                    current.Prev.Next=current.Next;
+                    current.Next.Prev = current.Prev;
+                }
+                break;
+            }
+            current = current.Next;
         }
     }
 }
